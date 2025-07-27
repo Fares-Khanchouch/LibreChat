@@ -18,7 +18,7 @@ interface:
   mcpServers:
     - name: "n8n"
       type: sse # Streamable HTTP server using Server-Sent Events
-      url: "${N8N_MCP_URL}" # Uses the environment variable from Railway
+      url: "czlonkowskin8n-mcp-railwaylatest-production-b34d.up.railway.app" # Uses the environment variable from Railway
       timeout: 120000 # Optional: 2-minute timeout for long-running workflows
   # Enable/disable file search as a chatarea selection (default: true)
   # Note: This setting does not disable the Agents File Search Capability.
