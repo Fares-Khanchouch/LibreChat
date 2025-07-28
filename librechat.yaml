@@ -163,7 +163,7 @@ mcpServers:
       - "n8n-mcp"
     env:
       MCP_MODE: "stdio"
-      LOG_LEVEL: "error"
+      LOG_LEVEL: "debug"
       # These variables must be set in your Railway service settings
       N8N_API_URL: "${N8N_INSTANCE_URL}"
       N8N_API_KEY: "${N8N_API_KEY}"
