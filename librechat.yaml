@@ -143,14 +143,30 @@ actions:
 
 # Example MCP Servers Object Structure
 mcpServers:
-  n8n:
+  # Test 1: SSE connection to the root domain using an environment variable
+  mcp-test-1:
     type: sse
-    url: https://czlonkowskin8n-mcp-railwaylatest-production-b34d.up.railway.app
+    url: "${N8N_MCP_URL}"
     timeout: 120000
-  n8nmcp:
+
+  # Test 2: SSE connection to the /mcp path using an environment variable
+  mcp-test-2:
     type: sse
-    url: https://czlonkowskin8n-mcp-railwaylatest-production-b34d.up.railway.app/mcp
+    url: "${N8N_MCP_URL}/mcp"
     timeout: 120000
+
+  # Test 3: The robust stdio method using environment variables
+  mcp-test-3:
+    command: "npx"
+    args:
+      - "-y"
+      - "n8n-mcp"
+    env:
+      MCP_MODE: "stdio"
+      LOG_LEVEL: "error"
+      # These variables must be set in your Railway service settings
+      N8N_API_URL: "${N8N_INSTANCE_URL}"
+      N8N_API_KEY: "${N8N_API_KEY}"
   
 #     # type: sse # type can optionally be omitted
 #     url: http://localhost:3001/sse
