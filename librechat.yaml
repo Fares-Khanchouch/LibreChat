@@ -142,8 +142,16 @@ actions:
     - "google.com"
 
 # Example MCP Servers Object Structure
-# mcpServers:
-#   everything:
+mcpServers:
+  n8n:
+    type: sse
+    url: https://czlonkowskin8n-mcp-railwaylatest-production-b34d.up.railway.app
+    timeout: 120000
+  n8nmcp:
+    type: sse
+    url: https://czlonkowskin8n-mcp-railwaylatest-production-b34d.up.railway.app/mcp
+    timeout: 120000
+  
 #     # type: sse # type can optionally be omitted
 #     url: http://localhost:3001/sse
 #     timeout: 60000  # 1 minute timeout for this server, this is the default timeout for MCP servers.
