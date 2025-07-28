@@ -20,7 +20,7 @@ WORKDIR /app
 USER node
 
 COPY --chown=node:node . .
-COPY librechat.yaml /app/librechat.yaml
+
 
 RUN \
     # Allow mounting of these files, which have no default
@@ -37,6 +37,8 @@ RUN \
     npm cache clean --force
 
 RUN mkdir -p /app/client/public/images /app/api/logs
+
+COPY --from=build /app/librechat.yaml ./librechat.yaml
 
 # Node API setup
 EXPOSE 3080
