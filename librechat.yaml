@@ -135,20 +135,23 @@ actions:
 
 # Example MCP Servers Object Structure
 mcpServers:
-  # Test 1: SSE connection to the root domain (Correct Object Format)
-  sse-test-root:
-    type: sse
-    url: "${N8N_MCP_URL}"
+  n8n-streamable-mcp:
+    type: streamable-http # Use the new type
+    url: "${N8N_MCP_URL}/mcp" # Streamable HTTP often uses a /mcp path
     timeout: 120000
-
-  # Test 2: SSE connection to the /mcp path (Correct Object Format)
-  sse-test-mcp-path:
-    type: sse
-    url: "${N8N_MCP_URL}/mcp"
+    headers:
+      x-n8n-api-url: "${N8N_API_URL}"
+      x-n8n-api-key: "${N8N_API_KEY}"
+  n8n-sse-mcp:
+    type: sse # Use the new type
+    url: "${N8N_MCP_URL}/mcp" # Streamable HTTP often uses a /mcp path
     timeout: 120000
+    headers:
+      x-n8n-api-url: "${N8N_API_URL}"
+      x-n8n-api-key: "${N8N_API_KEY}"
 
   # Test 3: The robust stdio method (Most Likely to Succeed)
-  stdio-test:
+  stdio-n8n-mcp:
     command: "npx"
     args:
       - "-y"
@@ -157,7 +160,7 @@ mcpServers:
       MCP_MODE: "stdio"
       LOG_LEVEL: "debug"
       # These variables MUST be set in your Railway service settings
-      N8N_API_URL: "${N8N_INSTANCE_URL}"
+      N8N_API_URL: "${N8N_API_URL}"
       N8N_API_KEY: "${N8N_API_KEY}"
 #     # type: sse # type can optionally be omitted
 #     url: http://localhost:3001/sse
