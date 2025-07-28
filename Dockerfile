@@ -21,7 +21,6 @@ USER node
 
 COPY --chown=node:node . .
 
-
 RUN \
     # Allow mounting of these files, which have no default
     touch .env ; \
@@ -37,8 +36,6 @@ RUN \
     npm cache clean --force
 
 RUN mkdir -p /app/client/public/images /app/api/logs
-
-COPY --from=build /app/librechat.yaml ./librechat.yaml
 
 # Node API setup
 EXPOSE 3080
